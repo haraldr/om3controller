@@ -1,0 +1,185 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{34A56E90-9864-4A1F-83B0-C92265C6C522}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WeatherPlugin</RootNamespace>
+    <AssemblyName>WeatherPlugin</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\OptimusUI\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\OptimusUI\bin\Release\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Toolz.OptimusMini, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\OptimusUI\bin\Release\Toolz.OptimusMini.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config.Designer.cs">
+      <DependentUpon>Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocationData\LocationData.cs" />
+    <Compile Include="LocationData\LocationDataProvider.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WeatherData\WeatherCondition.cs" />
+    <Compile Include="WeatherData\WeatherData.cs" />
+    <Compile Include="WeatherData\WeatherDataProvider.cs" />
+    <Compile Include="Worker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TWClogo_64px.png" />
+    <None Include="Resources\WeatherXml.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\wicon32_0.png" />
+    <Content Include="Resources\wicon32_1.png" />
+    <Content Include="Resources\wicon32_10.png" />
+    <Content Include="Resources\wicon32_11.png" />
+    <Content Include="Resources\wicon32_12.png" />
+    <Content Include="Resources\wicon32_13.png" />
+    <Content Include="Resources\wicon32_14.png" />
+    <Content Include="Resources\wicon32_15.png" />
+    <Content Include="Resources\wicon32_16.png" />
+    <Content Include="Resources\wicon32_17.png" />
+    <Content Include="Resources\wicon32_18.png" />
+    <Content Include="Resources\wicon32_19.png" />
+    <Content Include="Resources\wicon32_2.png" />
+    <Content Include="Resources\wicon32_20.png" />
+    <Content Include="Resources\wicon32_21.png" />
+    <Content Include="Resources\wicon32_22.png" />
+    <Content Include="Resources\wicon32_23.png" />
+    <Content Include="Resources\wicon32_24.png" />
+    <Content Include="Resources\wicon32_25.png" />
+    <Content Include="Resources\wicon32_26.png" />
+    <Content Include="Resources\wicon32_27.png" />
+    <Content Include="Resources\wicon32_28.png" />
+    <Content Include="Resources\wicon32_29.png" />
+    <Content Include="Resources\wicon32_3.png" />
+    <Content Include="Resources\wicon32_30.png" />
+    <Content Include="Resources\wicon32_31.png" />
+    <Content Include="Resources\wicon32_32.png" />
+    <Content Include="Resources\wicon32_33.png" />
+    <Content Include="Resources\wicon32_34.png" />
+    <Content Include="Resources\wicon32_35.png" />
+    <Content Include="Resources\wicon32_36.png" />
+    <Content Include="Resources\wicon32_37.png" />
+    <Content Include="Resources\wicon32_38.png" />
+    <Content Include="Resources\wicon32_39.png" />
+    <Content Include="Resources\wicon32_4.png" />
+    <Content Include="Resources\wicon32_40.png" />
+    <Content Include="Resources\wicon32_41.png" />
+    <Content Include="Resources\wicon32_42.png" />
+    <Content Include="Resources\wicon32_43.png" />
+    <Content Include="Resources\wicon32_44.png" />
+    <Content Include="Resources\wicon32_45.png" />
+    <Content Include="Resources\wicon32_46.png" />
+    <Content Include="Resources\wicon32_47.png" />
+    <Content Include="Resources\wicon32_5.png" />
+    <Content Include="Resources\wicon32_6.png" />
+    <Content Include="Resources\wicon32_7.png" />
+    <Content Include="Resources\wicon32_8.png" />
+    <Content Include="Resources\wicon32_9.png" />
+    <Content Include="Resources\wicon32_na.png" />
+    <Content Include="Resources\wicon64_0.png" />
+    <Content Include="Resources\wicon64_1.png" />
+    <Content Include="Resources\wicon64_10.png" />
+    <Content Include="Resources\wicon64_11.png" />
+    <Content Include="Resources\wicon64_12.png" />
+    <Content Include="Resources\wicon64_13.png" />
+    <Content Include="Resources\wicon64_14.png" />
+    <Content Include="Resources\wicon64_15.png" />
+    <Content Include="Resources\wicon64_16.png" />
+    <Content Include="Resources\wicon64_17.png" />
+    <Content Include="Resources\wicon64_18.png" />
+    <Content Include="Resources\wicon64_19.png" />
+    <Content Include="Resources\wicon64_2.png" />
+    <Content Include="Resources\wicon64_20.png" />
+    <Content Include="Resources\wicon64_21.png" />
+    <Content Include="Resources\wicon64_22.png" />
+    <Content Include="Resources\wicon64_23.png" />
+    <Content Include="Resources\wicon64_24.png" />
+    <Content Include="Resources\wicon64_25.png" />
+    <Content Include="Resources\wicon64_26.png" />
+    <Content Include="Resources\wicon64_27.png" />
+    <Content Include="Resources\wicon64_28.png" />
+    <Content Include="Resources\wicon64_29.png" />
+    <Content Include="Resources\wicon64_3.png" />
+    <Content Include="Resources\wicon64_30.png" />
+    <Content Include="Resources\wicon64_31.png" />
+    <Content Include="Resources\wicon64_32.png" />
+    <Content Include="Resources\wicon64_33.png" />
+    <Content Include="Resources\wicon64_34.png" />
+    <Content Include="Resources\wicon64_35.png" />
+    <Content Include="Resources\wicon64_36.png" />
+    <Content Include="Resources\wicon64_37.png" />
+    <Content Include="Resources\wicon64_38.png" />
+    <Content Include="Resources\wicon64_39.png" />
+    <Content Include="Resources\wicon64_4.png" />
+    <Content Include="Resources\wicon64_40.png" />
+    <Content Include="Resources\wicon64_41.png" />
+    <Content Include="Resources\wicon64_42.png" />
+    <Content Include="Resources\wicon64_43.png" />
+    <Content Include="Resources\wicon64_44.png" />
+    <Content Include="Resources\wicon64_45.png" />
+    <Content Include="Resources\wicon64_46.png" />
+    <Content Include="Resources\wicon64_47.png" />
+    <Content Include="Resources\wicon64_5.png" />
+    <Content Include="Resources\wicon64_6.png" />
+    <Content Include="Resources\wicon64_7.png" />
+    <Content Include="Resources\wicon64_8.png" />
+    <Content Include="Resources\wicon64_9.png" />
+    <Content Include="Resources\wicon64_na.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

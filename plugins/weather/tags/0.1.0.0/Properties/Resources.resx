@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TWClogo_64px.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WeatherXml" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WeatherXml.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="wicon32_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_0.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_10.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_11.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_12.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_13.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_14.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_15.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_17.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_18.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_19.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_20.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_23.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_25.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_26.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_27" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_27.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_28.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_29" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_29.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_30.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_31.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_33" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_33.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_34" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_34.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_35" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_35.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_36.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_37" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_37.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_38" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_38.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_39" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_39.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_41" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_41.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_42.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_43" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_43.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_44" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_44.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_45" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_45.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_46" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_46.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_47" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_47.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_5.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_6.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_7.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_8.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_9.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon32_na" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon32_na.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_0.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_10.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_11.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_12.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_13.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_14.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_15.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_17.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_18.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_19.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_20.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_23.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_25.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_26.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_27" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_27.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_28.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_29" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_29.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_30.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_31.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_33" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_33.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_34" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_34.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_35" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_35.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_36.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_37" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_37.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_38" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_38.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_39" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_39.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_41" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_41.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_42.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_43" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_43.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_44" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_44.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_45" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_45.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_46" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_46.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_47" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_47.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_5.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_6.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_7.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_8.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_9.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wicon64_na" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wicon64_na.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>
