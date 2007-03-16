@@ -447,12 +447,14 @@ namespace OptimusUI
       {
         _Device.RemovePlugin(keyIndex);
         _Device.ClearImage(keyIndex);
+        _Settings.Save();
         return false;
       }
       else
       {
         OptimusMiniPluginBase lPlugin = _Plugins[pluginIndex];
         _Device.AddPlugin(keyIndex, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
+        _Settings.Save();
         return lPlugin.IsConfigurable;
       }
     }
