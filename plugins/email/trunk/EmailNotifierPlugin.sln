@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailNotifierPlugin", "EmailNotifierPlugin.csproj", "{8A7E161F-932B-427D-B842-BCB26B058F07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F339299-332D-4D2C-9A79-BDE2B8D49A54}"
+	ProjectSection(SolutionItems) = preProject
+		license.txt = license.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A7E161F-932B-427D-B842-BCB26B058F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A7E161F-932B-427D-B842-BCB26B058F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A7E161F-932B-427D-B842-BCB26B058F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A7E161F-932B-427D-B842-BCB26B058F07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
