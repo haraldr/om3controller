@@ -76,7 +76,7 @@ namespace GoogleReaderNotifierPlugin
       _UserId = _Settings["UserId"];
       _Execute = _Settings["Execute"];
 
-      _CheckIntervalSeconds = 60;
+      _CheckIntervalSeconds = 300;
       if (_Settings["CheckInterval"] != "")
       {
         _CheckIntervalSeconds = int.Parse(_Settings["CheckInterval"]);
