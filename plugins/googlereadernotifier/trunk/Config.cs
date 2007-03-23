@@ -47,7 +47,6 @@ namespace GoogleReaderNotifierPlugin
 
       textUser.Text = _Settings["User"];
       textPassword.Text = _Settings["Password"];
-      textUserId.Text = _Settings["UserId"];
       textExecute.Text = _Settings["Execute"];
 
       int lCheckInterval = 300;
@@ -68,9 +67,40 @@ namespace GoogleReaderNotifierPlugin
 
     private void buttonOk_Click(object sender, EventArgs e)
     {
+      int i;
+
+      // Validate
+      if (!int.TryParse(textCheckInterval.Text, out i))
+      {
+        MessageBox.Show("Enter a valid number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        textCheckInterval.Focus();
+        return;
+      }
+
+      if (!int.TryParse(textItemInterval.Text, out i))
+      {
+        MessageBox.Show("Enter a valid number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        textItemInterval.Focus();
+        return;
+      }
+
+      if (int.Parse(textCheckInterval.Text) < 60)
+      {
+        MessageBox.Show("Minimum is 60.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        textCheckInterval.Focus();
+        return;
+      }
+
+      if (int.Parse(textItemInterval.Text) < 1)
+      {
+        MessageBox.Show("Minimum is 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        textItemInterval.Focus();
+        return;
+      }
+
+      // Save
       _Settings["User"] = textUser.Text;
       _Settings["Password"] = textPassword.Text;
-      _Settings["UserId"] = textUserId.Text;
       _Settings["Execute"] = textExecute.Text;
       _Settings["CheckInterval"] = textCheckInterval.Text;
       _Settings["ItemInterval"] = textItemInterval.Text;

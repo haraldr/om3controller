@@ -40,7 +40,7 @@ namespace GoogleReaderNotifierPlugin
     private const string EMAIL = "Email";
     private const string PASSWORD = "Passwd";
     private const string SOURCE = "source=om3controller";
-    private const string SERVICE = "service=cl";
+    private const string SERVICE = "service=reader";
     private const string SESSIONID = "SID";
     private const string ACCOUNT_TYPE = "accountType=HOSTED_OR_GOOGLE";
 
@@ -168,11 +168,11 @@ namespace GoogleReaderNotifierPlugin
     /// <param name="sessionId">Google session id.</param>
     /// <param name="userId">Google reader's user id.</param>
     /// <returns>Feed as xml or null if not successful.</returns>
-    public static XmlDocument GetFeed(string sessionId, string userId)
+    public static XmlDocument GetFeed(string sessionId)
     {
 
       // ----- Create request
-      Uri lUrl = new Uri(string.Format(URL, userId));
+      Uri lUrl = new Uri(string.Format(URL, "-"));
       WebRequest lRequest = null;
       HttpWebRequest lHttpRequest = null;
 

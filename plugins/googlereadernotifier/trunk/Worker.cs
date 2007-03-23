@@ -45,7 +45,6 @@ namespace GoogleReaderNotifierPlugin
 
     private string _User;
     private string _Password;
-    private string _UserId;
     private string _Execute;
     private List<Item> _FeedItems;
     private bool _EvenMoreFeedItems;
@@ -73,7 +72,6 @@ namespace GoogleReaderNotifierPlugin
       _User = _Settings["User"];
       if (!string.IsNullOrEmpty(_User)) { _User += "@gmail.com"; }
       _Password = _Settings["Password"];
-      _UserId = _Settings["UserId"];
       _Execute = _Settings["Execute"];
 
       _CheckIntervalSeconds = 300;
@@ -167,8 +165,7 @@ namespace GoogleReaderNotifierPlugin
     {
       if (DateTime.Now.Subtract(_LastCheck).TotalSeconds > _CheckIntervalSeconds &&
           !string.IsNullOrEmpty(_User) &&
-          !string.IsNullOrEmpty(_Password) &&
-          !string.IsNullOrEmpty(_UserId))
+          !string.IsNullOrEmpty(_Password))
       {
         List<Item> lItems = GetNewFeedItems();
         if (lItems != null)
@@ -226,7 +223,7 @@ namespace GoogleReaderNotifierPlugin
       // TODO: notify user of errors
       string lSessionId = GoogleAuthentication.GetSessionId(_User, _Password);
       if (string.IsNullOrEmpty(lSessionId)) { return null; }
-      XmlDocument lXml = GoogleReaderFeed.GetFeed(lSessionId, _UserId);
+      XmlDocument lXml = GoogleReaderFeed.GetFeed(lSessionId);
       if (lXml == null) { return null; }
 
 

@@ -43,13 +43,11 @@ namespace GoogleReaderNotifierPlugin
       this.textPassword = new System.Windows.Forms.TextBox();
       this.label2 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
-      this.textUserId = new System.Windows.Forms.TextBox();
-      this.label9 = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // buttonOk
       // 
-      this.buttonOk.Location = new System.Drawing.Point(281, 209);
+      this.buttonOk.Location = new System.Drawing.Point(281, 170);
       this.buttonOk.Name = "buttonOk";
       this.buttonOk.Size = new System.Drawing.Size(75, 23);
       this.buttonOk.TabIndex = 0;
@@ -60,7 +58,7 @@ namespace GoogleReaderNotifierPlugin
       // buttonCancel
       // 
       this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.buttonCancel.Location = new System.Drawing.Point(362, 209);
+      this.buttonCancel.Location = new System.Drawing.Point(362, 170);
       this.buttonCancel.Name = "buttonCancel";
       this.buttonCancel.Size = new System.Drawing.Size(75, 23);
       this.buttonCancel.TabIndex = 1;
@@ -69,7 +67,7 @@ namespace GoogleReaderNotifierPlugin
       // 
       // textExecute
       // 
-      this.textExecute.Location = new System.Drawing.Point(112, 103);
+      this.textExecute.Location = new System.Drawing.Point(112, 64);
       this.textExecute.Name = "textExecute";
       this.textExecute.Size = new System.Drawing.Size(320, 20);
       this.textExecute.TabIndex = 11;
@@ -77,7 +75,7 @@ namespace GoogleReaderNotifierPlugin
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(12, 106);
+      this.label4.Location = new System.Drawing.Point(12, 67);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(96, 13);
       this.label4.TabIndex = 12;
@@ -86,7 +84,7 @@ namespace GoogleReaderNotifierPlugin
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(12, 149);
+      this.label5.Location = new System.Drawing.Point(12, 110);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(150, 13);
       this.label5.TabIndex = 16;
@@ -95,7 +93,7 @@ namespace GoogleReaderNotifierPlugin
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(12, 175);
+      this.label6.Location = new System.Drawing.Point(12, 136);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(102, 13);
       this.label6.TabIndex = 17;
@@ -103,7 +101,7 @@ namespace GoogleReaderNotifierPlugin
       // 
       // textCheckInterval
       // 
-      this.textCheckInterval.Location = new System.Drawing.Point(168, 146);
+      this.textCheckInterval.Location = new System.Drawing.Point(168, 107);
       this.textCheckInterval.Name = "textCheckInterval";
       this.textCheckInterval.Size = new System.Drawing.Size(40, 20);
       this.textCheckInterval.TabIndex = 18;
@@ -111,7 +109,7 @@ namespace GoogleReaderNotifierPlugin
       // label7
       // 
       this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(214, 149);
+      this.label7.Location = new System.Drawing.Point(214, 110);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(47, 13);
       this.label7.TabIndex = 19;
@@ -120,7 +118,7 @@ namespace GoogleReaderNotifierPlugin
       // label8
       // 
       this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(214, 175);
+      this.label8.Location = new System.Drawing.Point(214, 136);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(47, 13);
       this.label8.TabIndex = 21;
@@ -128,7 +126,7 @@ namespace GoogleReaderNotifierPlugin
       // 
       // textItemInterval
       // 
-      this.textItemInterval.Location = new System.Drawing.Point(168, 172);
+      this.textItemInterval.Location = new System.Drawing.Point(168, 133);
       this.textItemInterval.Name = "textItemInterval";
       this.textItemInterval.Size = new System.Drawing.Size(40, 20);
       this.textItemInterval.TabIndex = 20;
@@ -175,31 +173,13 @@ namespace GoogleReaderNotifierPlugin
       this.label3.TabIndex = 26;
       this.label3.Text = "@gmail.com";
       // 
-      // textUserId
-      // 
-      this.textUserId.Location = new System.Drawing.Point(112, 64);
-      this.textUserId.Name = "textUserId";
-      this.textUserId.Size = new System.Drawing.Size(201, 20);
-      this.textUserId.TabIndex = 28;
-      // 
-      // label9
-      // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(12, 67);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(87, 13);
-      this.label9.TabIndex = 27;
-      this.label9.Text = "User id in reader:";
-      // 
       // Config
       // 
       this.AcceptButton = this.buttonOk;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.buttonCancel;
-      this.ClientSize = new System.Drawing.Size(449, 247);
-      this.Controls.Add(this.textUserId);
-      this.Controls.Add(this.label9);
+      this.ClientSize = new System.Drawing.Size(449, 205);
       this.Controls.Add(this.label3);
       this.Controls.Add(this.textPassword);
       this.Controls.Add(this.label2);
@@ -243,7 +223,5 @@ namespace GoogleReaderNotifierPlugin
     private System.Windows.Forms.TextBox textPassword;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.TextBox textUserId;
-    private System.Windows.Forms.Label label9;
   }
 }
