@@ -27,6 +27,8 @@ using System.Drawing.Imaging;
 using System.Threading;
 using Microsoft.Win32;
 
+using Toolz.OptimusMini.Plugins;
+
 
 [assembly: CLSCompliant(true)]
 namespace Toolz.OptimusMini
@@ -48,6 +50,10 @@ namespace Toolz.OptimusMini
   public delegate void OptimusMiniKeyEventHandler(OptimusMiniController sender, byte keyIndex);
 
 
+
+  public delegate void OptimusMiniNotificationEventHandler(OptimusMiniController sender, OptimusMiniEventLog notification);
+
+
   /// <summary>
   /// Controls an optimus mini device.
   /// </summary>
@@ -55,13 +61,12 @@ namespace Toolz.OptimusMini
   {
 
     private OptimusMiniConnection _Connection;
-
-    private OptimusMiniPluginWorkerBase[] _Plugins;
+    private PluginManager _PluginManager;
     private OptimusMiniKeyState[] _KeyState;
     public Bitmap[] _LastImage;
-    
+
     private OptimusMiniBrightness _Brightness;
-    private OptimusMiniLayout _Layout;
+    private OptimusMiniOrientation _Orientation;
     private float _Gamma;
     private int _IdleTime;
 
@@ -81,24 +86,15 @@ namespace Toolz.OptimusMini
     /// </summary>
     public OptimusMiniController()
     {
-
-      _Plugins = new OptimusMiniPluginWorkerBase[3];
-
       _KeyState = new OptimusMiniKeyState[3];
-      _KeyState[0] = new OptimusMiniKeyState(this, 0);
-      _KeyState[1] = new OptimusMiniKeyState(this, 1);
-      _KeyState[2] = new OptimusMiniKeyState(this, 2);
-
       _LastImage = new Bitmap[3];
-
       _Connection = new OptimusMiniConnection();
-
       _Brightness = OptimusMiniBrightness.Low;
-      _Layout = OptimusMiniLayout.Right;
+      _Orientation = OptimusMiniOrientation.Right;
       _Gamma = 0.65f;
       _IdleTime = 300;
 
-      //SystemEvents.PowerModeChanged += new PowerModeChangedEventHandler(PowerModeChanged);
+      SystemEvents.PowerModeChanged += new PowerModeChangedEventHandler(PowerModeChanged);
     }
 
 
@@ -122,12 +118,13 @@ namespace Toolz.OptimusMini
     /// <param name="clearImages">Boolean whether to clear images or not.</param>
     /// <returns>0 if successful, otherwise an error code.</returns>
     /// <remarks>
-    /// Error codes: 0=successful, 1=device not found, 2=device not responding, 3=system is suspending
+    /// Error codes: 0=successful, 1=device not found, 2=device not responding,
+    /// 3=access to port denied, 10=system is suspending
     /// </remarks>
     private int Init(bool raiseEvent, bool clearImages)
     {
       if (_IsConnected) { return 0; }
-      if (_IsSuspending) { return 3; }
+      if (_IsSuspending) { return 10; }
 
       _KeyState[0] = new OptimusMiniKeyState(this, 0);
       _KeyState[1] = new OptimusMiniKeyState(this, 1);
@@ -155,10 +152,6 @@ namespace Toolz.OptimusMini
       _IsConnected = true;
 
       if (raiseEvent) { RaiseConnectionStateChanged(true); }
-
-      if (_Plugins[0] != null) { _Plugins[0].Repaint(); }
-      if (_Plugins[1] != null) { _Plugins[1].Repaint(); }
-      if (_Plugins[2] != null) { _Plugins[2].Repaint(); }
 
       return 0;
     }
@@ -227,6 +220,27 @@ namespace Toolz.OptimusMini
 
 
     /// <summary>
+    /// Gets assigned plugin manager.
+    /// </summary>
+    public PluginManager PluginManager
+    {
+      get { return _PluginManager; }
+    }
+
+
+    /// <summary>
+    /// Assigns plugin manager.
+    /// </summary>
+    /// <param name="pluginManager">Plugin manager to set.</param>
+    /// <returns>0 if successful, otherwise an error code.</returns>
+    public int SetPluginManager(PluginManager pluginManager)
+    {
+      _PluginManager = pluginManager;
+      return 0;
+    }
+
+
+    /// <summary>
     /// Gets brightness level of device.
     /// </summary>
     public OptimusMiniBrightness Brightness
@@ -249,24 +263,24 @@ namespace Toolz.OptimusMini
 
     
     /// <summary>
-    /// Gets layout mode of device.
+    /// Gets orientation of device.
     /// </summary>
-    public OptimusMiniLayout Layout
+    public OptimusMiniOrientation Orientation
     {
-      get { return _Layout; }
+      get { return _Orientation; }
     }
 
 
     /// <summary>
-    /// Sets layout mode of device.
+    /// Sets orientation of device.
     /// </summary>
-    /// <param name="layout">Layout to set.</param>
+    /// <param name="orientation">Orientation to set.</param>
     /// <returns>0 if successful, otherwise an error code.</returns>
-    public int SetLayout(OptimusMiniLayout layout)
+    public int SetOrientation(OptimusMiniOrientation orientation)
     {
-      if (_Layout != layout)
+      if (_Orientation != orientation)
       {
-        _Layout = layout;
+        _Orientation = orientation;
         for (byte i = 0; i <= 2; i++)
         {
           if (_LastImage[i] != null)
@@ -396,68 +410,6 @@ namespace Toolz.OptimusMini
 
 
     /// <summary>
-    /// Assigns passed plugin to specified key.
-    /// </summary>
-    /// <param name="index">0-based index of key.</param>
-    /// <param name="plugin">Plugin to assign.</param>
-    /// <returns>0 if successful, otherwise an error code.</returns>
-    public int AddPlugin(byte index, OptimusMiniPluginWorkerBase plugin, OptimusMiniSettingsList settings)
-    {
-      
-      // ----- If there's already a plugin assigned remove it
-      RemovePlugin(index);
-
-
-      // ----- Add new plugin
-      _Plugins[index] = plugin;
-      plugin.Initialize(settings);
-      plugin.Repaint();
-
-
-      // ----- Result
-      return 0;
-    }
-
-
-    /// <summary>
-    /// Removes all plugins.
-    /// </summary>
-    /// <returns>0 if successful, otherwise an error code.</returns>
-    public int RemovePlugin()
-    {
-      for (byte i = 0; i <= 2; i++)
-      {
-        RemovePlugin(i);
-      }
-      return 0;
-    }
-
-
-    /// <summary>
-    /// Removes plugin from specified key.
-    /// </summary>
-    /// <param name="index">0-based index of key.</param>
-    /// <returns>0 if successful, otherwise an error code.</returns>
-    public int RemovePlugin(byte index)
-    {
-
-      if (_Plugins[index] != null)
-      {
-        OptimusMiniPluginWorkerBase lCurrentPlugin = _Plugins[index];
-        _Plugins[index] = null;
-
-        // Tell plugin to stop working
-
-        // Terminate
-        lCurrentPlugin.Terminate();
-      }
-
-      return 0;
-
-    }
-
-
-    /// <summary>
     /// Gets idle time threshold in seconds after which device is switched off.
     /// </summary>
     public int IdleTime
@@ -490,6 +442,9 @@ namespace Toolz.OptimusMini
     /// Raised when connection state changes.
     /// </summary>
     public event OptimusMiniConnectionStateChangedEventHandler OnConnectionStateChanged;
+
+
+    public event OptimusMiniNotificationEventHandler OnNotification;
 
 
     /// <summary>
@@ -532,7 +487,6 @@ namespace Toolz.OptimusMini
     {
       try
       {
-
         _UpdateThreadExit = false;
 
         while (_Connection.GetConnectionState() && !_UpdateThreadExit)
@@ -559,40 +513,17 @@ namespace Toolz.OptimusMini
 
 
           // ----- Update plugins
-          for (byte i = 0; i < 3; i++)
-          {
-            // Update plugins
-            OptimusMiniPluginWorkerBase lPlugin = _Plugins[i];
-            if (lPlugin != null)
-            {
-              // Check for updated images
-              if (lPlugin._Bitmap != null)
-              {
-                Bitmap lBitmap = lPlugin._Bitmap;
-                lPlugin._Bitmap = null;
-
-                _LastImage[i] = lBitmap.Clone(new Rectangle(0, 0, 96, 96), PixelFormat.Format24bppRgb);
-                RotateImage(lBitmap);
-                _Connection.SetImage(MapKeyIndex(i), lBitmap);
-                lBitmap.Dispose();
-              }
-
-              // Start update
-              if (lPlugin.IsNextUpdateDue())
-              {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(lPlugin.Update));
-                //lPlugin.Update(null);
-              }
-            }
+          if (_PluginManager != null) { _PluginManager.Update(); }
 
 
-            // ----- Update key state
-            byte lKeyState = _Connection.GetKeyState();
-            _KeyState[0].Update((lKeyState & 1) == 1);
-            _KeyState[1].Update((lKeyState & 2) == 2);
-            _KeyState[2].Update((lKeyState & 4) == 4);
-          }
+          // ----- Update key state
+          byte lKeyState = _Connection.GetKeyState();
+          _KeyState[0].Update((lKeyState & 1) == 1);
+          _KeyState[1].Update((lKeyState & 2) == 2);
+          _KeyState[2].Update((lKeyState & 4) == 4);
 
+
+          // ----- Short break
           Thread.Sleep(10);
         }
 
@@ -609,7 +540,7 @@ namespace Toolz.OptimusMini
     private byte MapKeyIndex(byte index)
     {
       if (index == 1 ||
-          (_Layout != OptimusMiniLayout.Left && _Layout != OptimusMiniLayout.Up))
+          (_Orientation != OptimusMiniOrientation.Left && _Orientation != OptimusMiniOrientation.Up))
       {
         return index;
       }
@@ -620,17 +551,17 @@ namespace Toolz.OptimusMini
 
     private void RotateImage(Bitmap bitmap)
     {
-      switch (_Layout)
+      switch (_Orientation)
       {
-        case OptimusMiniLayout.Left:
+        case OptimusMiniOrientation.Left:
           bitmap.RotateFlip(RotateFlipType.RotateNoneFlipXY);
           break;
 
-        case OptimusMiniLayout.Down:
+        case OptimusMiniOrientation.Down:
           bitmap.RotateFlip(RotateFlipType.Rotate270FlipNone);
           break;
 
-        case OptimusMiniLayout.Up:
+        case OptimusMiniOrientation.Up:
           bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
           break;
 
@@ -646,73 +577,49 @@ namespace Toolz.OptimusMini
 
     internal void RaiseKeyDown(byte index)
     {
-      OptimusMiniPluginWorkerBase lPlugin = _Plugins[MapKeyIndex(index)];
-      if (lPlugin != null)
-      {
-        ThreadPool.QueueUserWorkItem(new WaitCallback(lPlugin.OnKeyDown));
-      }
-
+      if (_PluginManager != null) { _PluginManager.KeyDown(MapKeyIndex(index)); }
       if (OnKeyDown != null) { OnKeyDown(this, index); }
     }
 
 
     internal void RaiseKeyUp(byte index)
     {
-      OptimusMiniPluginWorkerBase lPlugin = _Plugins[MapKeyIndex(index)];
-      if (lPlugin != null)
-      {
-        ThreadPool.QueueUserWorkItem(new WaitCallback(lPlugin.OnKeyUp));
-      }
-
+      if (_PluginManager != null) { _PluginManager.KeyUp(MapKeyIndex(index)); }
       if (OnKeyUp != null) { OnKeyUp(this, index); }
     }
 
 
     internal void RaiseKeyHold(byte index)
     {
-      OptimusMiniPluginWorkerBase lPlugin = _Plugins[MapKeyIndex(index)];
-      if (lPlugin != null)
-      {
-        ThreadPool.QueueUserWorkItem(new WaitCallback(lPlugin.OnKeyHold));
-      }
-
+      if (_PluginManager != null) { _PluginManager.KeyHold(MapKeyIndex(index)); }
       if (OnKeyHold != null) { OnKeyHold(this, index); }
     }
 
 
     internal void RaiseKeyRelease(byte index)
     {
-      OptimusMiniPluginWorkerBase lPlugin = _Plugins[MapKeyIndex(index)];
-      if (lPlugin != null)
-      {
-        ThreadPool.QueueUserWorkItem(new WaitCallback(lPlugin.OnKeyRelease));
-      }
-
+      if (_PluginManager != null) { _PluginManager.KeyRelease(MapKeyIndex(index)); }
       if (OnKeyRelease != null) { OnKeyRelease(this, index); }
     }
 
 
     internal void RaiseKeyPress(byte index)
     {
-      OptimusMiniPluginWorkerBase lPlugin = _Plugins[MapKeyIndex(index)];
-      if (lPlugin != null)
-      {
-        ThreadPool.QueueUserWorkItem(new WaitCallback(lPlugin.OnKeyPress));
-      }
-
+      if (_PluginManager != null) { _PluginManager.KeyPress(MapKeyIndex(index)); }
       if (OnKeyPress != null) { OnKeyPress(this, index); }
     }
 
 
     internal void RaiseKeyDoublePress(byte index)
     {
-      OptimusMiniPluginWorkerBase lPlugin = _Plugins[MapKeyIndex(index)];
-      if (lPlugin != null)
-      {
-        ThreadPool.QueueUserWorkItem(new WaitCallback(lPlugin.OnKeyDoublePress));
-      }
-
+      if (_PluginManager != null) { _PluginManager.KeyDoublePress(MapKeyIndex(index)); }
       if (OnKeyDoublePress != null) { OnKeyDoublePress(this, index); }
+    }
+
+
+    internal void RaiseNotification(OptimusMiniEventLog notification)
+    {
+      if (OnNotification != null) { OnNotification(this, notification); }
     }
 
 
@@ -729,7 +636,7 @@ namespace Toolz.OptimusMini
     }
 
 
-    private void PowerModeChanged_Resume()
+    public void PowerModeChanged_Resume()
     {
       _IsSuspending = false;
 
@@ -744,16 +651,16 @@ namespace Toolz.OptimusMini
           return;
         }
 
-        for (byte i = 0; i <= 2; i++)
-        {
-          ShowImage(i, _LastImage[i]);
-        }
+        //for (byte i = 0; i <= 2; i++)
+        //{
+        //  ShowImage(i, _LastImage[i]);
+        //}
       }
 
     }
 
 
-    private void PowerModeChanged_Suspend()
+    public void PowerModeChanged_Suspend()
     {
       _IsSuspending = true;
 

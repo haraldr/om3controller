@@ -22,17 +22,66 @@ Contributor(s): Harald Röxeisen.
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 
 namespace Toolz.OptimusMini
 {
 
+      //  _hookID = SetHook(_proc);
+      //Application.Run();
+      //UnhookWindowsHookEx(_hookID);
+
+
   /// <summary>
   /// Contains imported win32 methods.
   /// </summary>
   internal class Win32Library
   {
+
+    private const int WH_KEYBOARD_LL = 13;
+    private const int WM_KEYDOWN = 0x0100;
+    private const int WM_KEYUP = 0x101;
+    private const int WM_SYSKEYDOWN = 0x0104;
+    private const int WM_SYSKEYUP = 0x0105;
+
+    private static LowLevelKeyboardProc _proc = HookCallback;
+    private static IntPtr _hookID = IntPtr.Zero;
+
+    private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+    private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+    {
+      //if (nCode >= 0)
+      //{
+      //  int vkCode = Marshal.ReadInt32(lParam);
+      //  Keys lKey = (Keys)vkCode;
+      //  Console.WriteLine((Keys)vkCode);
+
+      //  if (wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_SYSKEYDOWN)
+      //  {
+      //    if (_Pressed.IndexOf(lKey) == -1)
+      //    {
+      //      _Pressed.Add(lKey);
+      //    }
+      //  }
+      //  else if (wParam == (IntPtr)WM_KEYUP || wParam == (IntPtr)WM_SYSKEYUP)
+      //  {
+      //    int lIndex = _Pressed.IndexOf(lKey);
+      //    if (lIndex != -1) { _Pressed.RemoveAt(lIndex); }
+      //  }
+
+      //  // Currently pressed
+      //  //Console.Clear();
+      //  //foreach (Keys key in _Pressed)
+      //  //{
+      //  //  Console.Write(key.ToString() + "+");
+      //  //}
+      //}
+
+      return CallNextHookEx(_hookID, nCode, wParam, lParam);
+    }
 
     [DllImport("User32.dll")]
     private static extern bool GetLastInputInfo(ref LastInputInfo lastInputInfo);
@@ -45,6 +94,25 @@ namespace Toolz.OptimusMini
       [MarshalAs(UnmanagedType.U4)]
       public int Time;
     }
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    private static extern Int32 GetWindowThreadProcessId(IntPtr hWnd, out Int32 lpdwProcessId);
 
 
     /// <summary>
@@ -68,6 +136,18 @@ namespace Toolz.OptimusMini
         return 0;
       }
 
+    }
+
+
+    /// <summary>
+    /// Gets the process of the currently active window.
+    /// </summary>
+    /// <returns>Process of the currently active window.</returns>
+    public static Process GetActiveProcess()
+    {
+      int lProcessId;
+      GetWindowThreadProcessId(GetForegroundWindow(), out lProcessId);
+      return Process.GetProcessById(lProcessId);
     }
 
   }

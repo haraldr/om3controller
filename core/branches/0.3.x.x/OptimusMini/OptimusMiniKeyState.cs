@@ -153,8 +153,8 @@ namespace Toolz.OptimusMini
       }
 
 
-      // ----- Check if up (no down since 50ms)
-      if (IsDown && LastKeyDownAgo >= 50)
+      // ----- Check if up (no down since 100ms)
+      if (IsDown && LastKeyDownAgo >= 100)
       {
         _Owner.RaiseKeyUp(KeyIndex);
 

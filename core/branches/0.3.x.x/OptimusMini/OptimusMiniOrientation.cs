@@ -28,9 +28,9 @@ namespace Toolz.OptimusMini
 {
 
   /// <summary>
-  /// Specifies layout of the device.
+  /// Specifies orientation of the device.
   /// </summary>
-  public enum OptimusMiniLayout
+  public enum OptimusMiniOrientation
   {
     /// <summary>
     /// USB cable is at the left side.

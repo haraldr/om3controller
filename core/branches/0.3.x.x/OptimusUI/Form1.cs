@@ -38,9 +38,9 @@ namespace OptimusUI
   public partial class Form1 : Form
   {
 
-    private OptimusMiniController _Device;
-    private OptimusMiniPluginBrowser _Plugins;
-    private OptimusMiniSettings _Settings;
+    internal OptimusMiniController _Device;
+    internal OptimusMiniPluginBrowser _Plugins;
+    internal OptimusMiniSettings _Settings;
     private ConnectionStateChangedDelegate _ConnectionStateChanged;
     private KeyEventDelegate _KeyDown;
     private KeyEventDelegate _KeyUp;
@@ -57,6 +57,7 @@ namespace OptimusUI
       _Device = new OptimusMiniController();
       _Plugins = new OptimusMiniPluginBrowser();
       _Settings = new OptimusMiniSettings();
+      _Device.SetPluginManager(new Toolz.OptimusMini.Plugins.PluginManager(_Device));
 
       _ConnectionStateChanged = new ConnectionStateChangedDelegate(ConnectionStateChangedMethod);
       _Device.OnConnectionStateChanged += ConnectionStateChangedEventHandler;
@@ -88,9 +89,12 @@ namespace OptimusUI
         selectPlugin0.Items.Add(_Plugins[i].Name);
         selectPlugin1.Items.Add(_Plugins[i].Name);
         selectPlugin2.Items.Add(_Plugins[i].Name);
+        selectPluginToAdd.Items.Add(_Plugins[i].Name);
       }
 
       LoadSettings();
+
+      new Forms.Main().Show();
     }
 
 
@@ -115,13 +119,13 @@ namespace OptimusUI
       // Layout
       if (lSettings["Layout"] != "")
       {
-        _Device.SetLayout((OptimusMiniLayout)int.Parse(lSettings["Layout"]));
-        switch (_Device.Layout)
+        _Device.SetOrientation((OptimusMiniOrientation)int.Parse(lSettings["Layout"]));
+        switch (_Device.Orientation)
         {
-          case OptimusMiniLayout.Down: fieldLayoutDown.Checked = true; break;
-          case OptimusMiniLayout.Left: fieldLayoutLeft.Checked = true; break;
-          case OptimusMiniLayout.Right: fieldLayoutRight.Checked = true; break;
-          case OptimusMiniLayout.Up: fieldLayoutUp.Checked = true; break;
+          case OptimusMiniOrientation.Down: fieldLayoutDown.Checked = true; break;
+          case OptimusMiniOrientation.Left: fieldLayoutLeft.Checked = true; break;
+          case OptimusMiniOrientation.Right: fieldLayoutRight.Checked = true; break;
+          case OptimusMiniOrientation.Up: fieldLayoutUp.Checked = true; break;
         }
       }
 
@@ -152,26 +156,35 @@ namespace OptimusUI
       // ----- Plugins
       OptimusMiniPluginBase lPlugin;
 
-      lPlugin = _Plugins.GetPluginById(lSettings["Plugin0"]);
-      if (lPlugin != null)
+      for (int i = 0; i < 10; i++)
       {
-        _Device.AddPlugin(0, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
-        selectPlugin0.SelectedIndex = _Plugins.GetIndexById(lPlugin.Id) + 1;
+        lPlugin = _Plugins.GetPluginById(lSettings["Plugin" + i.ToString()]);
+        if (lPlugin != null)
+        {
+          _Device.PluginManager.AssignPlugin(lPlugin.Id, "", _Settings[lPlugin.Id].List);
+        }
       }
 
-      lPlugin = _Plugins.GetPluginById(lSettings["Plugin1"]);
-      if (lPlugin != null)
-      {
-        _Device.AddPlugin(1, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
-        selectPlugin1.SelectedIndex = _Plugins.GetIndexById(lPlugin.Id) + 1;
-      }
+      //lPlugin = _Plugins.GetPluginById(lSettings["Plugin0"]);
+      //if (lPlugin != null)
+      //{
+      //  _Device.PluginManager.AddPlugin(0, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
+      //  selectPlugin0.SelectedIndex = _Plugins.GetIndexById(lPlugin.Id) + 1;
+      //}
 
-      lPlugin = _Plugins.GetPluginById(lSettings["Plugin2"]);
-      if (lPlugin != null)
-      {
-        _Device.AddPlugin(2, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
-        selectPlugin2.SelectedIndex = _Plugins.GetIndexById(lPlugin.Id) + 1;
-      }
+      //lPlugin = _Plugins.GetPluginById(lSettings["Plugin1"]);
+      //if (lPlugin != null)
+      //{
+      //  _Device.PluginManager.AddPlugin(1, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
+      //  selectPlugin1.SelectedIndex = _Plugins.GetIndexById(lPlugin.Id) + 1;
+      //}
+
+      //lPlugin = _Plugins.GetPluginById(lSettings["Plugin2"]);
+      //if (lPlugin != null)
+      //{
+      //  _Device.PluginManager.AddPlugin(2, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
+      //  selectPlugin2.SelectedIndex = _Plugins.GetIndexById(lPlugin.Id) + 1;
+      //}
 
     }
 
@@ -184,7 +197,7 @@ namespace OptimusUI
 
       // ----- Device settings
       lSettings["Brightness"] = ((int)_Device.Brightness).ToString();
-      lSettings["Layout"] = ((int)_Device.Layout).ToString();
+      lSettings["Layout"] = ((int)_Device.Orientation).ToString();
       lSettings["Gamma"] = _Device.Gamma.ToString();
       lSettings["IdleTime"] = _Device.IdleTime.ToString();
 
@@ -219,7 +232,6 @@ namespace OptimusUI
       {
         buttonConnect.Text = "Disconnect";
         labelConnectionState.Text = "Connected";
-        //groupPlugins.Enabled = true;
         _Device.ShowCalibrate(0);
         _Device.ShowVersion(1);
         _Device.ClearImage(2);
@@ -228,11 +240,7 @@ namespace OptimusUI
       {
         buttonConnect.Text = "Connect";
         labelConnectionState.Text = "Disconnected";
-        //groupPlugins.Enabled = false;
-        //_Device.RemovePlugin();
-        //selectPlugin0.SelectedIndex = 0;
-        //selectPlugin1.SelectedIndex = 0;
-        //selectPlugin2.SelectedIndex = 0;
+        _Device.PluginManager.RemovePlugin();
         ShowForm();
       }
     }
@@ -352,22 +360,22 @@ namespace OptimusUI
 
     private void fieldLayoutRight_CheckedChanged(object sender, EventArgs e)
     {
-      _Device.SetLayout(OptimusMiniLayout.Right);
+      _Device.SetOrientation(OptimusMiniOrientation.Right);
     }
 
     private void fieldLayoutLeft_CheckedChanged(object sender, EventArgs e)
     {
-      _Device.SetLayout(OptimusMiniLayout.Left);
+      _Device.SetOrientation(OptimusMiniOrientation.Left);
     }
 
     private void fieldLayoutUp_CheckedChanged(object sender, EventArgs e)
     {
-      _Device.SetLayout(OptimusMiniLayout.Up);
+      _Device.SetOrientation(OptimusMiniOrientation.Up);
     }
 
     private void fieldLayoutDown_CheckedChanged(object sender, EventArgs e)
     {
-      _Device.SetLayout(OptimusMiniLayout.Down);
+      _Device.SetOrientation(OptimusMiniOrientation.Down);
     }
 
     private void trackbarGamma_Scroll(object sender, EventArgs e)
@@ -445,7 +453,7 @@ namespace OptimusUI
     {
       if (pluginIndex == -1)
       {
-        _Device.RemovePlugin(keyIndex);
+        _Device.PluginManager.RemovePlugin(keyIndex);
         _Device.ClearImage(keyIndex);
         _Settings.Save();
         return false;
@@ -453,7 +461,7 @@ namespace OptimusUI
       else
       {
         OptimusMiniPluginBase lPlugin = _Plugins[pluginIndex];
-        _Device.AddPlugin(keyIndex, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
+        _Device.PluginManager.AddPlugin(keyIndex, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
         _Settings.Save();
         return lPlugin.IsConfigurable;
       }
@@ -482,11 +490,36 @@ namespace OptimusUI
       if (lForm.ShowDialog(this) == DialogResult.OK)
       {
         _Settings.Save();
-        _Device.AddPlugin(keyIndex, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
+        _Device.PluginManager.AddPlugin(keyIndex, lPlugin.CreateWorker(), _Settings[lPlugin.Id].List);
       }
     }
 
     #endregion
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+      for (int i = 0; i <= 2; i++)
+      {
+        _Device._LastImage[i].Save(Application.StartupPath + "\\" + i.ToString() + ".bmp");
+      }
+    }
+
+    private void buttonSuspend_Click(object sender, EventArgs e)
+    {
+      _Device.PowerModeChanged_Suspend();
+    }
+
+    private void buttonResume_Click(object sender, EventArgs e)
+    {
+      _Device.PowerModeChanged_Resume();
+    }
+
+    private void buttonAddPlugin_Click(object sender, EventArgs e)
+    {
+      int pluginIndex = selectPluginToAdd.SelectedIndex;
+      OptimusMiniPluginBase lPlugin = _Plugins[pluginIndex];
+      _Device.PluginManager.AssignPlugin(lPlugin.Id, "", _Settings[lPlugin.Id].List);
+    }
 
   }
 }

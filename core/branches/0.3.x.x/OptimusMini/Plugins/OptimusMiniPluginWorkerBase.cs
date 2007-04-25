@@ -37,15 +37,19 @@ namespace Toolz.OptimusMini
   {
 
     internal Bitmap _Bitmap;
+    internal int _BitmapUpdated;
+    internal int _BitmapPainted;
     internal bool _UpdateRunning;
     internal Stopwatch _NextUpdateTimer;
     internal TimeSpan _NextUpdate;
+    internal List<OptimusMiniEventLog> _EventLog;
 
 
     protected OptimusMiniPluginWorkerBase()
     {
       _NextUpdateTimer = new Stopwatch();
       _NextUpdate = TimeSpan.MinValue;
+      _EventLog = new List<OptimusMiniEventLog>();
     }
 
 
@@ -96,6 +100,7 @@ namespace Toolz.OptimusMini
     public void UpdateImage(Bitmap image)
     {
       _Bitmap = image.Clone(new Rectangle(0, 0, 96, 96), PixelFormat.Format24bppRgb);
+      _BitmapUpdated = Environment.TickCount;
     }
 
 
@@ -111,13 +116,55 @@ namespace Toolz.OptimusMini
     }
 
 
+    /// <summary>
+    /// Adds an event to the log and notifies the user about it.
+    /// </summary>
+    /// <param name="type">Severity of event.</param>
+    /// <param name="summary">Short summary of what happened.</param>
+    /// <param name="description">Description of what happened.</param>
+    public void LogEvent(OptimusMiniEventLogType type, string summary, string description)
+    {
+      OptimusMiniEventLog lItem = new OptimusMiniEventLog(type, summary, description);
+      lock (_EventLog)
+      {
+        _EventLog.Add(lItem);
+      }
+    }
+
+
+    internal List<OptimusMiniEventLog> GetEventLog()
+    {
+      if (_EventLog.Count == 0) { return null; }
+
+      List<OptimusMiniEventLog> lResult;
+
+      lock (_EventLog)
+      {
+        lResult = _EventLog.GetRange(0, _EventLog.Count);
+        _EventLog.Clear();
+      }
+
+      return lResult;
+    }
+
+
     internal void Update(object p)
     {
-      _UpdateRunning = true;
-      Update();
-      _UpdateRunning = false;
-      _NextUpdateTimer.Reset();
-      _NextUpdateTimer.Start();
+      try
+      {
+        _UpdateRunning = true;
+        Update();
+      }
+      catch (Exception e)
+      {
+        LogEvent(OptimusMiniEventLogType.Error, "Crash in Update", e.Message.ToString());
+      }
+      finally
+      {
+        _UpdateRunning = false;
+        _NextUpdateTimer.Reset();
+        _NextUpdateTimer.Start();
+      }
     }
 
 
@@ -129,7 +176,14 @@ namespace Toolz.OptimusMini
 
     internal void OnKeyDown(object p)
     {
-      OnKeyDown();
+      try
+      {
+        OnKeyDown();
+      }
+      catch (Exception e)
+      {
+        LogEvent(OptimusMiniEventLogType.Error, "Crash in OnKeyDown", e.Message.ToString());
+      }
     }
 
 
@@ -143,7 +197,14 @@ namespace Toolz.OptimusMini
 
     internal void OnKeyUp(object p)
     {
-      OnKeyUp();
+      try
+      {
+        OnKeyUp();
+      }
+      catch (Exception e)
+      {
+        LogEvent(OptimusMiniEventLogType.Error, "Crash in OnKeyUp", e.Message.ToString());
+      }
     }
 
 
@@ -157,7 +218,14 @@ namespace Toolz.OptimusMini
 
     internal void OnKeyPress(object p)
     {
-      OnKeyPress();
+      try
+      {
+        OnKeyPress();
+      }
+      catch (Exception e)
+      {
+        LogEvent(OptimusMiniEventLogType.Error, "Crash in OnKeyPress", e.Message.ToString());
+      }
     }
 
 
@@ -171,7 +239,14 @@ namespace Toolz.OptimusMini
 
     internal void OnKeyDoublePress(object p)
     {
-      OnKeyDoublePress();
+      try
+      {
+        OnKeyDoublePress();
+      }
+      catch (Exception e)
+      {
+        LogEvent(OptimusMiniEventLogType.Error, "Crash in OnKeyDoublePress", e.Message.ToString());
+      }
     }
 
 
@@ -185,7 +260,14 @@ namespace Toolz.OptimusMini
 
     internal void OnKeyHold(object p)
     {
-      OnKeyHold();
+      try
+      {
+        OnKeyHold();
+      }
+      catch (Exception e)
+      {
+        LogEvent(OptimusMiniEventLogType.Error, "Crash in OnKeyHold", e.Message.ToString());
+      }
     }
 
 
@@ -199,7 +281,14 @@ namespace Toolz.OptimusMini
 
     internal void OnKeyRelease(object p)
     {
-      OnKeyRelease();
+      try
+      {
+        OnKeyRelease();
+      }
+      catch (Exception e)
+      {
+        LogEvent(OptimusMiniEventLogType.Error, "Crash in OnKeyRelease", e.Message.ToString());
+      }
     }
 
 

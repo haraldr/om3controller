@@ -27,6 +27,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Security.Cryptography;
 using Microsoft.Win32;
 
 
@@ -47,7 +48,7 @@ namespace Toolz.OptimusMini
     private bool _Connected;
     private bool _On;
     private SerialPort _Port;
-    private EventWaitHandle _CommandWaitHandle;
+    private AutoResetEvent _CommandWaitHandle;
 
     private Thread _CommandThread;
     private bool _CommandThreadExit;
@@ -58,7 +59,7 @@ namespace Toolz.OptimusMini
     private bool[] _CommandShow;
     private bool[] _CommandImage;
     private OptimusMiniConnectionImage[] _CommandImageValue;
-    
+
     private bool _CommandBrightness;
     private OptimusMiniBrightness _CommandBrightnessValue;
 
@@ -69,6 +70,9 @@ namespace Toolz.OptimusMini
     private byte _LastKeyDown;
 
     private bool _IsTerminating;
+
+    internal string[] _LastLinesCheckSum = new string[288];
+    internal System.Security.Cryptography.MD5CryptoServiceProvider _Md5 = new MD5CryptoServiceProvider();
 
 
     /// <summary>
@@ -89,7 +93,8 @@ namespace Toolz.OptimusMini
     /// </summary>
     /// <returns>0 if successful, otherwise an error code.</returns>
     /// <remarks>
-    /// Error codes: 0=successful, 1=device not found, 2=device not responding
+    /// Error codes: 0=successful, 1=device not found, 2=device not responding,
+    /// 3=access to port denied
     /// </remarks>
     public int Init()
     {
@@ -100,7 +105,15 @@ namespace Toolz.OptimusMini
       _Port = new SerialPort(lPort);
       _Port.BaudRate = 1000000;
       _Port.DataBits = 8;
-      _Port.Open();
+      try
+      {
+        _Port.Open();
+      }
+      catch (UnauthorizedAccessException e)
+      {
+        // Access to port denied, most likely has already a connection
+        return 3;
+      }
 
 
       // ----- Ping device to check if it's working
@@ -114,6 +127,7 @@ namespace Toolz.OptimusMini
       // ----- Successfully initialized
       _Port.DataReceived += PortDataReceived;
       _Connected = true;
+      _CommandWaitHandle = new AutoResetEvent(false);
       _CommandThread = new Thread(ProcessCommands);
       _CommandThread.Start();
       return 0;
@@ -246,7 +260,7 @@ namespace Toolz.OptimusMini
         }
       }
 
-      
+
       // ----- Add event handler again
       _Port.DataReceived += PortDataReceived;
 
@@ -265,8 +279,7 @@ namespace Toolz.OptimusMini
     private bool SendCommand(byte[] command)
     {
 
-      if (command[0] == 1) { return SendCommandLine(command); }
-
+      //if (command[0] == 1) { return SendCommandLine(command); }
       try
       {
         bool lSuccess = false;
@@ -275,10 +288,9 @@ namespace Toolz.OptimusMini
         while (!lSuccess && lTriesLeft > 0)
         {
           _Port.Write(command, 0, COMMAND_LENGTH);
-          _CommandWaitHandle = new AutoResetEvent(false);
+          _CommandWaitHandle.Reset();
           if (_CommandWaitHandle.WaitOne(1000, false))
           {
-            _CommandWaitHandle = null;
             if (_LastCommandResponse == command[COMMAND_LENGTH - 1])
             {
               // Successful
@@ -325,10 +337,9 @@ namespace Toolz.OptimusMini
         while (!lSuccess && lTriesLeft > 0)
         {
           _Port.Write(command, 0, COMMAND_LENGTH);
-          _CommandWaitHandle = new AutoResetEvent(false);
-          if (_CommandWaitHandle.WaitOne(500, false))
+          _CommandWaitHandle.Reset();
+          if (_CommandWaitHandle.WaitOne(1000, false))
           {
-            _CommandWaitHandle = null;
             if (_LastCommandResponse == command[COMMAND_LENGTH - 1])
             {
               // Successful
@@ -849,7 +860,15 @@ namespace Toolz.OptimusMini
 
       for (byte i = 0; i < OptimusMiniConnection.SCREEN_SIZE; i++)
       {
-        queue.Enqueue(_Lines[i]);
+        //queue.Enqueue(_Lines[i]);
+        string lCurrentHash = BitConverter.ToString(_Connection._Md5.ComputeHash(_Lines[i]));
+        //int lCurrentHash = BitConverter.ToInt32(_Connection._Checksum.ComputeHash(_Lines[i]), 0);
+
+        if (_Connection._LastLinesCheckSum[_KeyIndex * 96 + i] != lCurrentHash)
+        {
+          queue.Enqueue(_Lines[i]);
+          _Connection._LastLinesCheckSum[_KeyIndex * 96 + i] = lCurrentHash;
+        }
       }
 
     }

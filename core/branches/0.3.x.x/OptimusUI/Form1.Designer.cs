@@ -52,6 +52,9 @@ namespace OptimusUI
       this.fieldLayoutRight = new System.Windows.Forms.RadioButton();
       this.label2 = new System.Windows.Forms.Label();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
+      this.buttonSuspend = new System.Windows.Forms.Button();
+      this.buttonResume = new System.Windows.Forms.Button();
+      this.button1 = new System.Windows.Forms.Button();
       this.labelKey2 = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.labelKey1 = new System.Windows.Forms.Label();
@@ -71,6 +74,8 @@ namespace OptimusUI
       this.selectPlugin0 = new System.Windows.Forms.ComboBox();
       this.label8 = new System.Windows.Forms.Label();
       this.taskbarIcon = new System.Windows.Forms.NotifyIcon(this.components);
+      this.selectPluginToAdd = new System.Windows.Forms.ComboBox();
+      this.buttonAddPlugin = new System.Windows.Forms.Button();
       this.groupSettings.SuspendLayout();
       this.panel4.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackbarIdle)).BeginInit();
@@ -98,7 +103,7 @@ namespace OptimusUI
       this.groupSettings.Controls.Add(this.panel3);
       this.groupSettings.Controls.Add(this.panel2);
       this.groupSettings.Controls.Add(this.panel1);
-      this.groupSettings.Location = new System.Drawing.Point(10, 119);
+      this.groupSettings.Location = new System.Drawing.Point(10, 212);
       this.groupSettings.Name = "groupSettings";
       this.groupSettings.Size = new System.Drawing.Size(574, 124);
       this.groupSettings.TabIndex = 23;
@@ -309,6 +314,9 @@ namespace OptimusUI
       // 
       // groupBox2
       // 
+      this.groupBox2.Controls.Add(this.buttonSuspend);
+      this.groupBox2.Controls.Add(this.buttonResume);
+      this.groupBox2.Controls.Add(this.button1);
       this.groupBox2.Controls.Add(this.labelKey2);
       this.groupBox2.Controls.Add(this.label9);
       this.groupBox2.Controls.Add(this.labelKey1);
@@ -320,10 +328,40 @@ namespace OptimusUI
       this.groupBox2.Controls.Add(this.label4);
       this.groupBox2.Location = new System.Drawing.Point(10, 5);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(294, 108);
+      this.groupBox2.Size = new System.Drawing.Size(294, 161);
       this.groupBox2.TabIndex = 24;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Status";
+      // 
+      // buttonSuspend
+      // 
+      this.buttonSuspend.Location = new System.Drawing.Point(113, 132);
+      this.buttonSuspend.Name = "buttonSuspend";
+      this.buttonSuspend.Size = new System.Drawing.Size(54, 23);
+      this.buttonSuspend.TabIndex = 10;
+      this.buttonSuspend.Text = "Suspend";
+      this.buttonSuspend.UseVisualStyleBackColor = true;
+      this.buttonSuspend.Click += new System.EventHandler(this.buttonSuspend_Click);
+      // 
+      // buttonResume
+      // 
+      this.buttonResume.Location = new System.Drawing.Point(169, 132);
+      this.buttonResume.Name = "buttonResume";
+      this.buttonResume.Size = new System.Drawing.Size(54, 23);
+      this.buttonResume.TabIndex = 9;
+      this.buttonResume.Text = "Resume";
+      this.buttonResume.UseVisualStyleBackColor = true;
+      this.buttonResume.Click += new System.EventHandler(this.buttonResume_Click);
+      // 
+      // button1
+      // 
+      this.button1.Location = new System.Drawing.Point(225, 132);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(54, 23);
+      this.button1.TabIndex = 8;
+      this.button1.Text = "Keyshot";
+      this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
       // labelKey2
       // 
@@ -393,6 +431,8 @@ namespace OptimusUI
       // 
       // groupPlugins
       // 
+      this.groupPlugins.Controls.Add(this.buttonAddPlugin);
+      this.groupPlugins.Controls.Add(this.selectPluginToAdd);
       this.groupPlugins.Controls.Add(this.buttonConfig2);
       this.groupPlugins.Controls.Add(this.buttonConfig1);
       this.groupPlugins.Controls.Add(this.buttonConfig0);
@@ -404,7 +444,7 @@ namespace OptimusUI
       this.groupPlugins.Controls.Add(this.label8);
       this.groupPlugins.Location = new System.Drawing.Point(310, 5);
       this.groupPlugins.Name = "groupPlugins";
-      this.groupPlugins.Size = new System.Drawing.Size(274, 108);
+      this.groupPlugins.Size = new System.Drawing.Size(274, 161);
       this.groupPlugins.TabIndex = 25;
       this.groupPlugins.TabStop = false;
       this.groupPlugins.Text = "Plugins";
@@ -506,11 +546,30 @@ namespace OptimusUI
       this.taskbarIcon.Click += new System.EventHandler(this.taskbarIcon_Click);
       this.taskbarIcon.DoubleClick += new System.EventHandler(this.taskbarIcon_Click);
       // 
+      // selectPluginToAdd
+      // 
+      this.selectPluginToAdd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.selectPluginToAdd.FormattingEnabled = true;
+      this.selectPluginToAdd.Location = new System.Drawing.Point(67, 122);
+      this.selectPluginToAdd.Name = "selectPluginToAdd";
+      this.selectPluginToAdd.Size = new System.Drawing.Size(121, 21);
+      this.selectPluginToAdd.TabIndex = 9;
+      // 
+      // buttonAddPlugin
+      // 
+      this.buttonAddPlugin.Location = new System.Drawing.Point(193, 120);
+      this.buttonAddPlugin.Name = "buttonAddPlugin";
+      this.buttonAddPlugin.Size = new System.Drawing.Size(75, 23);
+      this.buttonAddPlugin.TabIndex = 10;
+      this.buttonAddPlugin.Text = "Add";
+      this.buttonAddPlugin.UseVisualStyleBackColor = true;
+      this.buttonAddPlugin.Click += new System.EventHandler(this.buttonAddPlugin_Click);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(596, 253);
+      this.ClientSize = new System.Drawing.Size(760, 373);
       this.Controls.Add(this.groupPlugins);
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.groupSettings);
@@ -583,6 +642,11 @@ namespace OptimusUI
     private System.Windows.Forms.Button buttonConfig2;
     private System.Windows.Forms.Button buttonConfig1;
     private System.Windows.Forms.Button buttonConfig0;
+    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button buttonSuspend;
+    private System.Windows.Forms.Button buttonResume;
+    private System.Windows.Forms.Button buttonAddPlugin;
+    private System.Windows.Forms.ComboBox selectPluginToAdd;
   }
 }
 
