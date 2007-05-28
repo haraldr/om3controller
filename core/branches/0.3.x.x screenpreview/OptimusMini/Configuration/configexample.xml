@@ -1,0 +1,72 @@
+<configuration>
+  <!-- controller settings -->
+  <section type="controller" id="controller" version="1">
+    <idletime>300</idletime>
+    <brightness>low|normal|high</brightness>
+    <gamma>0.65</gamma>
+    <orientation>right|left|top|bottom</orientation>
+    <rotationinterval>30</rotationinterval>
+    <pluginsgetahead>0|1</pluginsgetahead>
+    <preferredbackgroundcolor>...</preferredbackgroundcolor>
+    <preferredtextcolor>...</preferredtextcolor>
+    <preferredtitlecolor>...</preferredtitlecolor>
+  </section>
+
+  <!-- layouts -->
+  <section type="layout" id="default|..." version="1">
+    <name>...</name>
+    <shortcut ctrl="0|1" shift="0|1" alt="0|1">...</shortcut>
+    <applications>
+      <application type="windowtitle|processname">
+        <name>...</name>
+        <path>...</path>
+      </application>
+    </applications>
+    <rotation>
+      <key index="..." />
+    </rotation>
+    <permanent>0|1</permanent>
+  </section>
+
+  <!-- plugin instances -->
+  <section type="plugininstance" id="..." version="1">
+    <name>...</name>
+    <pluginid>...</pluginid>
+    <isdefault>0|1</isdefault>
+    <layouts>
+      <layout id="..." order="..." />
+    </layouts>
+  </section>
+
+  <!-- plugin instance settings -->
+  <section type="plugininstancesettings" id="default|..." version="1">
+    <!-- child nodes set by plugin, wrapper classes simplify access -->
+    <!-- generally it looks like this -->
+    <group name="..."> <!-- 0..n -->
+      <item name="...">...</item> <!-- 0..n -->
+      <group name="..."> <!-- nested groups -->
+        <item name="...">...</item>
+      </group>
+    </group>
+
+    <!-- name/value wrapper -->
+    <group name="...">
+      <item name="...">...</item>
+    </group>
+
+    <!-- item collection wrapper -->
+    <group name="...">
+      <group name="item[0..n]">
+        <item name="...">...</item>
+      </group>
+    </group>
+  </section>
+
+  <!-- custom sections can be added too, used by ui -->
+  <section type="custom" id="ui" version="1">
+    <exitonclose>0|1</exitonclose>
+    <windowstart>0|1</windowstart>
+    <errornotification>0|1</errornotification>
+  </section>
+
+</configuration>
